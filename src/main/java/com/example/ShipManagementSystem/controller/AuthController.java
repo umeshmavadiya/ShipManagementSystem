@@ -1,5 +1,6 @@
 package com.example.ShipManagementSystem.controller;
 
+import com.example.ShipManagementSystem.dto.ApiResponse;
 import com.example.ShipManagementSystem.dto.LoginDTO;
 import com.example.ShipManagementSystem.dto.UserDTO;
 import com.example.ShipManagementSystem.dto.UserResponseDTO;
@@ -63,13 +64,19 @@ public class AuthController {
     }
 
 
-    @ExceptionHandler(BadCredentialsException.class)
-    public String exceptionHandler() {
-        return "Credentials Invalid !!";
-    }
+//    @ExceptionHandler(BadCredentialsException.class)
+//    public String exceptionHandler() {
+//        return "Credentials Invalid !!";
+//    }
 
     @PostMapping("/register")
     public UserDTO createUser(@RequestBody UserDTO user){
         return  userService.createUser(user);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ApiResponse<String>> handleBadCredentialsException() {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(new ApiResponse<>(401, "Invalid Username or Password", null));
     }
 }

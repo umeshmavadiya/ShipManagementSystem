@@ -1,5 +1,7 @@
 package com.example.ShipManagementSystem.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,5 +25,12 @@ public class AppConfig {
     @Bean
     public AuthenticationManager authenticationManager (AuthenticationConfiguration builder) throws Exception {
         return builder.getAuthenticationManager();
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule()); // ✅ Fix for LocalDateTime
+        return objectMapper;
     }
 }

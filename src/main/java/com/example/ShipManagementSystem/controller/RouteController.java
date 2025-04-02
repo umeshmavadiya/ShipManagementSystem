@@ -49,10 +49,8 @@ public class RouteController {
         try {
             routeService.deleteRoute(routeId);
             return new ResponseEntity<>(new ApiResponse<>(200, "Route removed successfully", null), HttpStatus.OK);
-        } catch (EmptyResultDataAccessException ex) {
-            return new ResponseEntity<>(new ApiResponse<>(404, "Route not found to removed", null), HttpStatus.NOT_FOUND);
         } catch (Exception ex) {
-            return new ResponseEntity<>(new ApiResponse<>(500, "Error removed Route", null), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new ApiResponse<>(404, "Route Not Found", null), HttpStatus.NOT_FOUND);
         }
     }
 
