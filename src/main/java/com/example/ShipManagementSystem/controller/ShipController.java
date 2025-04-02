@@ -48,10 +48,8 @@ public class ShipController {
         try {
             shipService.deleteShipDetailById(shipId);
             return new ResponseEntity<>(new ApiResponse<>(200, "Ship deleted successfully", null), HttpStatus.OK);
-        } catch (EmptyResultDataAccessException ex) {
-            return new ResponseEntity<>(new ApiResponse<>(404, "Ship not found to delete", null), HttpStatus.NOT_FOUND);
         } catch (Exception ex) {
-            return new ResponseEntity<>(new ApiResponse<>(500, "Error deleting Ship", null), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new ApiResponse<>(404, "Ship not found to delete", null), HttpStatus.NOT_FOUND);
         }
     }
 

@@ -29,17 +29,15 @@ public class CrewController {
     @GetMapping
     public ResponseEntity<ApiResponse<List<CrewDTO>>> getCrewByShip(@PathVariable Long shipId){
         List<CrewDTO> crewData = crewService.getCrewByShip(shipId);
-        return new ResponseEntity<>(new ApiResponse<>(200, "Ship retrieved successfully! Ship ID: "+shipId, crewData), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(200, "Crew retrieved successfully! Ship ID: "+shipId, crewData), HttpStatus.OK);
     }
     @GetMapping("/{crewId}")
     public ResponseEntity<ApiResponse<CrewDTO>> getCrewByShipIdAndCrewId(@PathVariable Long shipId, @PathVariable Long crewId){
         try {
             CrewDTO crewData = crewService.getCrewByShipIdAndCrewId(shipId, crewId);
             return new ResponseEntity<>(new ApiResponse<>(200, "Crew retrieved successfully! Ship ID: " + shipId, crewData), HttpStatus.OK);
-        } catch (EmptyResultDataAccessException ex) {
-            return new ResponseEntity<>(new ApiResponse<>(404, "Crew not found", null), HttpStatus.NOT_FOUND);
-        } catch (Exception ex) {
-            return new ResponseEntity<>(new ApiResponse<>(500, "Error GetCrewByShipIdAndCrewId Crew", null), HttpStatus.INTERNAL_SERVER_ERROR);
+        }catch (Exception ex) {
+            return new ResponseEntity<>(new ApiResponse<>(404, "Ship ID: "+shipId+" with Crew not found ID:"+crewId, null), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -54,10 +52,8 @@ public class CrewController {
         try {
             crewService.removeCrewFromShip(crewId);
             return new ResponseEntity<>(new ApiResponse<>(200, "Crew removed successfully", null), HttpStatus.OK);
-        } catch (EmptyResultDataAccessException ex) {
-            return new ResponseEntity<>(new ApiResponse<>(404, "Crew not found to removed", null), HttpStatus.NOT_FOUND);
         } catch (Exception ex) {
-            return new ResponseEntity<>(new ApiResponse<>(500, "Error removed Crew", null), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new ApiResponse<>(404, "Crew not found to removed", null), HttpStatus.NOT_FOUND);
         }
     }
 }

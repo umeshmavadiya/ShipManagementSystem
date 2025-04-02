@@ -24,7 +24,7 @@ public class RouteService {
         this.shipRepository = shipRepository;
         this.modelMapper = modelMapper;
     }
-        public RouteDTO assignRouteToShip(Long shipId, RouteDTO route) {
+    public RouteDTO assignRouteToShip(Long shipId, RouteDTO route) {
         ShipEntity ship = shipRepository.findById(shipId)
                 .orElseThrow(() -> new ResourceNotFoundException("Ship with ID " + shipId + " not found"));
         ShipDTO shipDTO = modelMapper.map(ship, ShipDTO.class);
