@@ -57,8 +57,8 @@ class CrewServiceTest {
 
         CrewDTO result = crewService.assignCrewToShip(1L, mockCrewDTO);
         assertNotNull(result);
-        assertEquals("Umesh Mavadiya", result.getName());
-        verify(crewRepository, times(1)).save(any(CrewEntity.class));
+            assertEquals("Umesh Mavadiya", result.getName());
+            verify(crewRepository, times(1)).save(any(CrewEntity.class));
     }
 
     @Test
