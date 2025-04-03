@@ -64,11 +64,6 @@ public class AuthController {
     }
 
 
-//    @ExceptionHandler(BadCredentialsException.class)
-//    public String exceptionHandler() {
-//        return "Credentials Invalid !!";
-//    }
-
     @PostMapping("/register")
     public UserDTO createUser(@RequestBody UserDTO user){
         return  userService.createUser(user);

@@ -41,8 +41,6 @@ class  CrewControllerTest{
     @BeforeEach
     void setUp() {
         mockMvc = MockMvcBuilders.standaloneSetup(crewController).build();
-//        MockitoAnnotations.openMocks(this);
-//
         shipDTO = new ShipDTO(1L, "Titanic", "Cruise", 5000, "Active");
         crewDTO = new CrewDTO(1L, "Umesh Mavadiya","Master", shipDTO);
     }

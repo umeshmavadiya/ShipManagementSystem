@@ -37,12 +37,10 @@ class ShipControllerTest {
 
     @BeforeEach
     void setUp() {
-//        MockitoAnnotations.openMocks(this);
         mockMvc =  MockMvcBuilders.standaloneSetup(shipController).build();
         mockShipDTO = new ShipDTO(1L, "Titanic", "Cruise", 5000, "Active");
     }
 
-    //  Test Get All Ships
     @Test
     void getAllShipsDetailsTest() throws Exception {
         List<ShipDTO> shipList = Arrays.asList(mockShipDTO);
@@ -68,7 +66,6 @@ class ShipControllerTest {
         verify(shipService, times(1)).createNewShip(mockShipDTO);
     }
 
-    // Test Get Ship by ID
     @Test
     void getShipDetailsByIdTest() throws Exception {
         when(shipService.getShipDetailsById(1L)).thenReturn(mockShipDTO);
@@ -96,7 +93,6 @@ class ShipControllerTest {
         verify(shipService, times(1)).updateShipDetailsById(eq(1L), any(ShipDTO.class));
     }
 
-    // Test Delete Ship
     @Test
     void deleteShipDetailByIdTest_Success() throws Exception {
         doNothing().when(shipService).deleteShipDetailById(1L);

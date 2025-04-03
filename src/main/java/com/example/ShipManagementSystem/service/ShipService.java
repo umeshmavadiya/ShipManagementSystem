@@ -29,7 +29,7 @@ public class ShipService {
 
     public ShipDTO getShipDetailsById(Long shipId){
         ShipEntity shipEntity = shipRepository.findById(shipId).orElseThrow(() -> new ResourceNotFoundException("Ship not found with ID: " + shipId));
-        return  modelMapper.map(shipRepository.save(shipEntity), ShipDTO.class);
+        return  modelMapper.map(shipEntity, ShipDTO.class);
     }
 
     public List<ShipDTO> getAllShipDetails(){
